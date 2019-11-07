@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+
+  # App Service
+  app:
+    image: "pfalfa-api-dev"
+    container_name: pfalfa-api-dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    restart: unless-stopped
+    depends_on: 
+      - go-ipfs
+    environment:
+      IPFS_URL: go-ipfs:5001    
+    networks:
+      - goipfsNet
+
+  # IPFS Service   
+  go-ipfs:
+    image: "ipfs/go-ipfs"
+    container_name: go-ipfs
+    restart: unless-stopped
+    networks:
+      - goipfsNet
+
+networks:
+  goipfsNet:  
