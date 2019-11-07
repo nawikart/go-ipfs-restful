@@ -1,4 +1,4 @@
-# API DEV
+# GO IPFS RESTFUL
 <br />
 
 ## Deploy to docker
